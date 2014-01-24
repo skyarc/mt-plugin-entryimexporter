@@ -1,0 +1,175 @@
+package MTCMSImExporter::L10N::ja;
+
+use strict;
+use base 'MTCMSImExporter::L10N::en_us';
+use vars qw( %Lexicon );
+
+%Lexicon = (
+
+  ## common
+
+    'SKYARC System Co.,Ltd.' => '株式会社スカイアークシステム',
+
+  ## EntryImExporter
+
+    # Application
+    'Entry management', => 'ブログ記事の一括管理',
+    'Page management', => 'ウェブページの一括管理',
+    'Export all entries of blog(s) to CSV file format. And import entries from exported CSV data.'
+        =>'ブログ記事・ウェブページをCSVフォーマットで一括登録・出力するプラグインです。',
+    # Importer
+    'CSV file' => 'CSV ファイル',
+    'Execute' => '実行する',
+    'Select exported CSV (The columns that have invalid data will not be stored.)' => 'エントリーのデータが保存されたCSVファイルを選択します。CSVファイルに無効な値が挿入されている場合、エントリーの登録は行われません。',
+    'If there is entry have a same entry_id, existing entry\'s data are over written.' 
+        => '同じエントリーIDが存在する場合、そのエントリーを上書きする。',
+    'Number of fields is too few.' => 'フィールド数が足りません',
+    'Not found category_id [_1]' => 'カテゴリ ID [_1] が見つかりません',
+    'Not found category_id [_1] in specified blog' => '指定されたブログにカテゴリ ID [_1] が見つかりません',
+    'The value of [_1] is invalid' => '[_1] の値が不正です',
+    'Specified blog not found id=[_1]' => '投稿先のブログが見つかりません',
+    'Specified user not found' => '投稿ユーザーが見つかりません',
+    'Specified user has no permission' => '指定ユーザーに投稿権限がありません',
+    'Entry save error' => 'エントリーの保存に失敗しました',
+    'Category save error (entry_id=[_1])' => 'カテゴリーの保存に失敗しました (entry_id=[_1])',
+    'File upload error' => 'ファイルのアップロードに失敗しました',
+    'CSV file type error' => 'ファイルの拡張子が CSV ではありません',
+    'Title fields not found [_1]' => 'タイトルにフィールド [_1] が見つかりません',
+    'Fields count and title count are different' => 'フィールド数がタイトルと異なります',
+    '[_1] lines' => '[_1] 件目',
+    'count' => '件',
+    'CSV post error' => 'CSVデータ取込中にエラーが発生しました。',
+    'CSV all posted' => 'CSVデータの一括登録を行いました。',
+    'all [_1] count'   => '全 [_1] 件中',
+    'add [_1] count'   => '追加 [_1] 件',
+    'update [_1] count'=> '更新 [_1] 件',
+    'skip [_1] count'  => '未処理 [_1] 件',
+    'error [_1] count' => 'エラー [_1] 件',
+    'detail' => '詳しくは',
+    'ログを確認' => 'view log',
+    'Against Website (id:[_1]), entry can\'t be registered.' => 'ウェブサイト(id:[_1])に対して、ブログ記事を登録することはできません。',
+    '[_1] Line' => '[_1] 行目 ',
+    'This Data is Blog Entry Data' => 'このデータはブログ記事データです。',
+    'This Data is Web Page Data' => 'このデータはウェブページデータです。',
+    'Select blog' => '出力対象ブログ', 
+
+    'All blogs' => '全てのブログ', 
+    'All websites' => '全てのウェブサイト',
+    'All' => '全て',
+    'Website and belonged blog to [_1]' => '[_1]とその所属するブログ',
+    'Belonged blog to [_1]' => '[_1]に所属するブログ',
+
+    'Import from CSV' => 'CSV一括登録する', 
+    'Export to CSV' => 'CSV一括出力する', 
+    'entry data csv export' => 'ブログ記事をCSVフォーマットで出力します。',
+    'Overwrite Entries' => 'ブログ記事の上書き',
+    'Overwrite Pages' => 'ウェブページの上書き',
+    'entry data csv import' => 'ブログ記事をCSVフォーマットで登録します。',
+    'page data csv import' => 'ウェブページをCSVフォーマットで登録します。',
+    'entry data csv export' => 'ブログ記事をCSVフォーマットで出力します。',
+    'page data csv export' => 'ウェブページをCSVフォーマットで出力します。',
+    'Import Entries'   => 'ブログ記事のインポート', 
+    'Export Entries'   => 'ブログ記事のエクスポート', 
+    'Import Pages'   => 'ウェブページのインポート', 
+    'Export Pages'   => 'ウェブページのエクスポート', 
+    'Select exported blog entry CSV (The columns that have invalid data will not be stored.)' => 'ブログ記事のデータが保存されたCSVファイルを選択します。CSVファイルに無効な値が挿入されている場合、ブログ記事の登録は行われません。',
+    'Select exported web page CSV (The columns that have invalid data will not be stored.)' => 'ウェブページのデータが保存されたCSVファイルを選択します。CSVファイルに無効な値が挿入されている場合、ウェブページの登録は行われません。',
+    'If there is blog entry have a same id, existing entry\'s data are over written.' => '同じブログ記事IDが存在する場合、そのブログ記事を上書きする。',
+    'If there is web page have a same id, existing page\'s data are over written.' => '同じウェブページIDが存在する場合、そのウェブページを上書きする。',
+    'The CSV is not open in Exel. Exceeded the character limit of the cell.' => 'このCSVはExelでは開く事が出来ません。セルの文字数制限を超えました。',
+
+    'Posted a blog(id:[_1]) without permission.' => 'ブログ(id:[_1])への投稿権限がありません。',
+    'Website It is not possible to register a blog(id:[_1]) post.' => 'ウェブサイトへのブログ記事(id:[_1])の登録は出来ません。',
+
+    'Encoding' => '文字コード',
+    'Read CSV with specified encoding.' => 'CSVを指定した文字コードで読み込みます。',
+    'Write CSV with specified encoding.' => 'CSVを指定した文字コードで書き出します。',
+
+  ## CategoryImExporter
+
+    'Export category settings to CSV file. And import them from exported CSV file.' => 'カテゴリ設定をCSVファイルにエクスポートします。エクスポートされたCSVファイルから設定をインポートします。',
+    'Category management' => 'カテゴリの一括管理',
+    'Folder management' => 'フォルダの一括管理',
+    #
+    'Export [_1] Setting' => '[_1]のエクスポート',
+    'Exporting the [_1] setting as a CSV file.' => '[_1]の設定をCSVファイルとしてエクスポートします。',
+    'Export settings' => '設定のエクスポート',
+    'Import [_1] Setting' => '[_1]のインポート',
+    'Importing the [_1] setting from the uploaded CSV file.' => '[_1]の設定をアップロードされたCSVファイルからインポートします。',
+    'CSV File' => 'CSVファイル',
+    'Select the CSV file of exported setting' => 'エクスポートされた設定の書かれたCSVファイルを選択してください',
+    'Overwrite' => '上書き',
+    'If there are any items have same ID, The old one will be over-written.' => '同じIDを持つ項目があった場合、古いものを上書きします。',
+    'Import settings' => '設定のインポート',
+    # CMS.pm
+    'File upload error' => 'ファイルのアップロードに失敗しました',
+    'CSV file type error: [_1]' => 'CSVファイルの型が不正です: [_1]',
+    'CSV file has been proceeded.' => 'CSVデータの一括登録を行いました。',
+    'Lines: Total [_1] lines' => '全 [_1] 件中',
+    'Newly created: [_1] items' => '追加 [_1] 件',
+    'Updated: [_1] items' => '更新 [_1] 件',
+    'Skipped: [_1] items' => '未処理 [_1] 件',
+    'Errored: [_1] items' => 'エラー [_1] 件',
+    'Warned : [_1] items' => '警告   [_1] 件',
+
+    'Failed to parse csv. line:[_1]' => 'CSVの書式として解釈できませんでした。[_1]行目',
+    'Columns [_1], [_2], [_3], [_4] and [_5] are required.' => '[_1]と[_2]と[_3]と[_4]と[_5]のカラムは必須カラムです。',
+    'ID([_1]) can not be used. Blog ID([_2]) is invalid. line: [_3]'
+       => '指定のID([_1])のBlog ID([_2])の値が不正です。[_3]行目',
+    'ID([_1]) can not be used. Class([_2]) is invalid. line: [_3]'
+       => '指定のID([_1])のClass([_2])の値が不正です。[_3]行目',
+    'ID([_1]) can not be used. Are already available on other blogs or websites. line: [_2]'
+       => '指定のID([_1])は別のウェブサイトもしくはブログで使用しています。[_2]行目',
+    'Column ([_1]) You must enter a value. This column is required. line:[_2]'
+       => 'カラム([_1])の値がありません。このカラムの値は必須です。[_2]行目',
+    'Column ([_1]) You must enter a value. This column is required.'
+       => 'カラム([_1])の値がありません。このカラムの値は必須です。',
+    'Datetime column ([_1]) improper values, we substitute a default value. line: [_2]'
+       => '日時指定カラム([_1])の値が不正です。現在の時間に置き換えました。[_2]行目',
+    'Failed to save. line: [_1] [_2]' => '保存に失敗しました。[_1]行目 内容:[_2]',
+
+  ## AuthorImExporter
+
+    
+    'Export all authors to CSV file format. And import authors from exported file format.'
+        => 'ユーザー情報をCSVでインポート・エクスポートできるようにするプラグインです。',
+    'user csv all save' => 'ユーザーCSVデータを一括登録する',
+    'AuthorImExporter' => 'ユーザーの一括管理', 
+    'file upload error'  => 'ファイルのアップロードに失敗しました。',
+    'file suffix error'  => 'ファイルの拡張子がcsvではありません',
+    'title field error. [_1] field not found.' => 'タイトルに[_1]のフィールドが見つかりません。',
+    '"[_1]" field setting role for the blog title is missing.' => 'タイトルのフィールド「[_1]」は存在しないブログに対するロール設定です。',
+    'csv data field count error'  => '不正なデータ：フィールド数が足りません。',
+    'user data import save'  => 'ユーザー一括登録を行いました。',
+    'all count : [_1]'    => '全 [_1] 件中',
+    'add count : [_1]'    => '追加 [_1] 件',
+    'update count : [_1]' => '上書 [_1] 件',
+    'skip count : [_1]'   => '未処理 [_1] 件',
+    'error count : [_1]'  => 'エラー [_1] 件',
+    '<a href="[_1]">show log<a>'  => ' 詳しくは<a href="[_1]">ログを確認</a>してください',
+    '[_1] line: csv import error.<[_2]>'  => '[_1]行目: CSVデータ取込中にエラーが発生しました。「[_2]」',
+    '[_1] line: same name user error. author_name:[_2]'  => '[_1]行目 同名のユーザーがすでに存在します。author_name:[_2]',
+    '[_1] line: same id user error. author_id:[_2] author_name:[_3]'
+        => '[_1]行目 同一のIDがすでに存在します。author_id:[_2] author_name:[_3]',
+    '[_1] line: author_id error.'  => '[_1]行目 author_idが不正です。',
+    '[_1] line: user save error.'  => '[_1]行目 ユーザーの登録に失敗しました。',
+    '[_1] line: role save error. role_id:[_2]'  => '[_1]行目 ユーザー権限の登録に失敗しました。role_id:[_2]',
+    '[_1] line:'  => '[_1]行目 ',
+    'csv data error: [_1]'  => 'CSV: [_1]の値が不正です。',
+    'csv data error: [_1] value: [_2]'  => 'CSV: [_1]の値が不正です。値:[_2]',
+    'select import user csv file.' => '取込むユーザーのデータが保存されたCSVファイルを選択します。',
+    'same author_id updated.' => 'CSVファイルに同じユーザーIDが存在する場合、そのユーザーを上書きします。',
+    'csv file' => 'CSVファイル',
+    'Export Authors' => 'ユーザーのエクスポート',
+    'Import Authors' => 'ユーザーのインポート',
+    'author data csv import' => 'ユーザーをCSVフォーマットで登録します。',
+    'all save' => 'ユーザーのインポート',
+    'author data csv export' => 'ユーザーをCSVフォーマットで出力します。',
+    'export csv' => 'ユーザーのエクスポート',
+    'Overwrite authors' => 'ユーザーを上書きする',
+    'detail log' => '詳しくはログを確認してください。',
+    'Basename "[_1]" is duplicated. line: [_2]', => '出力ファイル/フォルダ名 "[_1]" は既に利用されています。',
+);
+
+
+1;

@@ -1,0 +1,210 @@
+<mt:include name="include/header.tmpl">
+
+<div class="system" style="margin-bottom:30px;padding-bottom:30px;border-bottom:1px solid #ccc;">
+
+<form enctype='multipart/form-data' name="frm_import" id="frm_import" method="post" action="<TMPL_VAR NAME=MT_URI ESCAPE=HTML>" mt:once="1">
+<input type="hidden" name="__mode" value="run_entry_importer" />
+<input type="hidden" name="class" value="<TMPL_VAR NAME=PAGE_MODE ESCAPE=HTML>" />
+<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID ESCAPE=HTML>" />
+<input type="hidden" name=magic_token value="<mt:var name=magic_token encode_html=1>" />
+
+<div class="field-header">
+<TMPL_IF NAME=ENTRY_FLG>
+        <h3><MT_TRANS phrase="Import Entries"></h3>
+<TMPL_ELSE>
+        <h3><MT_TRANS phrase="Import Pages"></h3>
+</TMPL_IF>
+</div>
+
+<TMPL_IF NAME=ENTRY_FLG>
+        <p><MT_TRANS phrase="entry data csv import"></p>
+<TMPL_ELSE>
+        <p><MT_TRANS phrase="page data csv import"></p>
+</TMPL_IF>
+
+<TMPL_IF NAME=SKR_ERROR_MSG>
+<MTIf name="mt_version" like="5.">
+  <div id="generic-error" class="msg msg-error">
+  <MTIf name="mt_version" like="5.0">
+    <p><TMPL_VAR NAME=SKR_ERROR_MSG></p>
+    <img class="mt-close-msg" src="<$mt:var name="static_uri"$>images/icon_close.png" alt="<__trans phrase='Close'>"/>
+  <MTElse>
+    <p class="msg-text"><TMPL_VAR NAME=SKR_ERROR_MSG></p>
+    <span class="mt-close-msg close-link clickable icon-remove icon16 action-icon"><__trans phrase='Close'></span>
+  </MTIf>
+  </div>
+<MTElseIf name="mt_version" like="6.">
+  <div id="generic-error" class="msg msg-error">
+    <p class="msg-text"><TMPL_VAR NAME=SKR_ERROR_MSG></p>
+    <span class="mt-close-msg close-link clickable icon-remove icon16 action-icon"><__trans phrase='Close'></span>
+  </div>
+<MTElseIf name="mt_version" like="4.">
+  <div id="generic-error" class="msg msg-error">
+    <a href="javascript:void(0)" onclick="javascript:hide('generic-error');return false;" class="close-me"><span>close</span></a>
+    <TMPL_VAR NAME=SKR_ERROR_MSG>
+  </div>
+</MTIf>
+</TMPL_IF>
+
+<TMPL_IF NAME=SKR_MSG>
+<MTIf name="mt_version" like="5.">
+  <div id="saved" class="msg msg-success">
+  <MTIf name="mt_version" like="5.0">
+    <p><TMPL_VAR NAME=SKR_MSG></p>
+    <img class="mt-close-msg" src="<$mt:var name="static_uri"$>images/icon_close.png" alt="<__trans phrase='Close'>"/>
+  <MTElse>
+    <p class="msg-text"><TMPL_VAR NAME=SKR_MSG></p>
+    <span class="mt-close-msg close-link clickable icon-remove icon16 action-icon"><__trans phrase='Close'></span>
+  </MTIf>
+  </div>
+<MTElseIf name="mt_version" like="6.">
+  <div id="saved" class="msg msg-success">
+    <p class="msg-text"><TMPL_VAR NAME=SKR_MSG></p>
+    <span class="mt-close-msg close-link clickable icon-remove icon16 action-icon"><__trans phrase='Close'></span>
+  </div>
+<MTElseIf name="mt_version" like="4.">
+ <div id="reset" class="msg msg-success">
+    <a href="javascript:void(0)" onclick="javascript:hide('reset');return false;" class="close-me"><span>close</span></a>
+    <TMPL_VAR NAME=SKR_MSG >
+ </div>
+</MTIf>
+</TMPL_IF>
+
+<div id="csvfile_field" class="field field-left-label ">
+				<div class="field-header first-child">
+								<label id="csvfile_field-label" class="first-child last-child" for="upload_file"><MT_TRANS phrase="CSV file"></label>
+				</div>
+				<div class="field-content last-child">
+								<input type="file" name="upload_file" size="50" />
+								<div class="hint last-child">
+<TMPL_IF NAME=ENTRY_FLG>
+        <MT_TRANS phrase="Select exported blog entry CSV (The columns that have invalid data will not be stored.)">
+<TMPL_ELSE>
+        <MT_TRANS phrase="Select exported web page CSV (The columns that have invalid data will not be stored.)">
+</TMPL_IF>
+								</div>
+				</div>
+</div>
+
+<div id="data_sjis_radio_block" class="field field-left-label ">
+				<div class="field-header first-child">
+								<label id="data_sjis_radio-label" class="first-child last-child" for="upload_file">
+    <MT_TRANS phrase="Encoding">
+								</label>
+				</div>
+				<div class="field-content last-child">
+				<input type="radio" name="import_as_sjis" id="import_as_js_1" value="1" <TMPL_IF NAME=import_as_sjis>checked="checked"</TMPL_IF> />
+                                <label for="import_as_sjis_1" class="first-child last-child">SJIS </label>
+				<input type="radio" name="import_as_sjis" id="import_as_js_0" value="0" <TMPL_UNLESS NAME=import_as_sjis>checked="checked"</TMPL_UNLESS> />
+                                <label for="import_as_sjis_1" class="first-child last-child">UTF-8 </label>
+								<div class="hint last-child">
+    <MT_TRANS phrase="Read CSV with specified encoding.">
+								</div>
+				</div>
+</div>
+
+<div id="data_check" class="field field-left-label ">
+				<div class="field-header first-child">
+								<label id="data_check-label" class="first-child last-child" for="upload_file">
+<TMPL_IF NAME=ENTRY_FLG>
+    <MT_TRANS phrase="Overwrite Entries">
+<TMPL_ELSE>
+    <MT_TRANS phrase="Overwrite Pages">
+</TMPL_IF>
+								</label>
+				</div>
+				<div class="field-content last-child">
+				<input type="checkbox" name="update_flg" value="1" checked="checked" />
+								<div class="hint last-child">
+<TMPL_IF NAME=ENTRY_FLG>
+    <MT_TRANS phrase="If there is blog entry have a same id, existing entry's data are over written.">
+<TMPL_ELSE>
+    <MT_TRANS phrase="If there is web page have a same id, existing page's data are over written.">
+</TMPL_IF>
+								</div>
+				</div>
+</div>
+
+
+<div class="actions-bar settings-actions-bar">
+    <div class="actions-bar-inner pkg actions">
+<TMPL_IF NAME=ENTRY_FLG>
+        <button type="submit" class="primary button action"><MT_TRANS phrase="Import Entries"></button>
+<TMPL_ELSE>
+        <button type="submit" class="primary button action"><MT_TRANS phrase="Import Pages"></button>
+</TMPL_IF>
+    </div>
+</div>
+</form>
+</div>
+
+
+
+<div class="system">
+
+<form name="frm_export" id="frm_export" method="get" action="<TMPL_VAR NAME=MT_URI ESCAPE=HTML>">
+<input type="hidden" name="__mode" value="run_entry_exporter" />
+<input type="hidden" name="class" value="<TMPL_VAR NAME=PAGE_MODE ESCAPE=HTML>" />
+<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID  ESCAPE=HTML>" />
+<input type="hidden" name=magic_token value="<mt:var name=magic_token encode_html=1>" />
+
+<div class="field-header">
+<TMPL_IF NAME=ENTRY_FLG>
+        <h3><MT_TRANS phrase="Export Entries"></h3>
+<TMPL_ELSE>
+        <h3><MT_TRANS phrase="Export Pages"></h3>
+</TMPL_IF>
+</div>
+
+
+<TMPL_IF NAME=ENTRY_FLG>
+        <p><MT_TRANS phrase="entry data csv export"></p>
+<TMPL_ELSE>
+        <p><MT_TRANS phrase="page data csv export"></p>
+</TMPL_IF>
+
+<div id="blog_select_field" class="field field-left-label ">
+				<div class="field-header first-child">
+								<label id="blog_select_field-label" class="first-child last-child" for="upload_file"><MT_TRANS phrase="Select blog"></label>
+				</div>
+				<div class="field-content last-child">
+<select id="id" name="id">
+<TMPL_LOOP NAME=EXPORTS>
+   <option value="<TMPL_VAR NAME=ID ESCAPE=HTML>" <TMPL_IF NAME=SELECTED> selected="selected"</TMPL_IF>><TMPL_IF NAME=INDENT>&nbsp;-&nbsp;</TMPL_IF><TMPL_VAR NAME=NAME ESCAPE=HTML></option>
+</TMPL_LOOP>
+</select>
+				</div>
+</div>
+
+
+<div id="data_sjis_radio_export" class="field field-left-label ">
+				<div class="field-header first-child">
+								<label id="data_sjis_radio-label_export" class="first-child last-child" for="upload_file">
+    <MT_TRANS phrase="Encoding">
+								</label>
+				</div>
+				<div class="field-content last-child">
+				<input type="radio" name="export_as_sjis" id="export_as_js_1" value="1" <TMPL_IF NAME=export_as_sjis>checked="checked"</TMPL_IF> />
+                                <label for="export_as_sjis_1" class="first-child last-child">SJIS </label>
+				<input type="radio" name="export_as_sjis" id="export_as_js_0" value="0" <TMPL_UNLESS NAME=export_as_sjis>checked="checked"</TMPL_UNLESS> />
+                                <label for="export_as_sjis_1" class="first-child last-child">UTF-8 </label>
+								<div class="hint last-child">
+    <MT_TRANS phrase="Write CSV with specified encoding.">
+								</div>
+				</div>
+</div>
+
+<div class="actions-bar settings-actions-bar">
+    <div class="actions-bar-inner pkg actions">
+<TMPL_IF NAME=ENTRY_FLG>
+        <button type="submit" class="primary button action"><MT_TRANS phrase="Export Entries"></button>
+<TMPL_ELSE>
+        <button type="submit" class="primary button action"><MT_TRANS phrase="Export Pages"></button>
+</TMPL_IF>
+    </div>
+</div>
+
+</form>
+</div>
+
+<mt:include name="include/footer.tmpl">
